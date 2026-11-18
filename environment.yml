@@ -1,0 +1,8 @@
+name: ragen2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12.13
+  - pip=25.0.1
+# Run scripts/setup_ragen2_env.sh for the pinned pip/CUDA stack and the two
+# editable source checkouts. This file deliberately has no prefix or local URL.

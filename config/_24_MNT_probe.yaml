@@ -1,0 +1,29 @@
+defaults:
+  - base
+
+trainer:
+  experiment_name: MNT-Probe
+
+actor_rollout_ref:
+  rollout:
+    max_model_len: 12000
+    gpu_memory_utilization: 0.5
+    max_num_batched_tokens: 16384
+
+es_manager:  # Stage 1 gradient-conflict probe: 8 groups x 16 = 128 rollouts/task (write/gradient_conflict_verification_plan.md §3)
+  format_penalty: -0.1
+  train:
+    env_groups: 24
+    group_size: 16
+    env_configs:
+      tags: ["MathTrain", "NashNew", "TicTacToe"]
+      n_groups: [8, 8, 8]
+  val:
+    env_groups: 12
+    group_size: 1
+    env_configs:
+      tags: ["MathTest", "NashNew", "TicTacToe"]
+      n_groups: [4, 4, 4]
+
+agent_proxy:
+  max_turn: 5

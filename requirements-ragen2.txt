@@ -1,0 +1,55 @@
+# Linux x86_64 / CPython 3.12 / NVIDIA CUDA 12.8.
+# These direct pins reproduce the versions used by the validated RAGEN2 path.
+# flash-attn 2.8.1 is installed separately from an ABI-matching local wheel (or
+# retained from an independently copied environment); see setup_ragen2_env.sh.
+# ragen and the pinned local veRL checkout are editable installs, not PyPI deps.
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch==2.8.0
+torchvision==0.23.0
+torchaudio==2.8.0
+vllm==0.11.0
+opencv-python-headless==4.11.0.86
+transformers==4.56.1
+ray[default]==2.56.0
+tensordict==0.10.0
+peft==0.19.1
+accelerate==1.14.0
+datasets==5.0.0
+hydra-core==1.3.3
+omegaconf==2.3.1
+torchdata==0.11.0
+swanlab==0.8.4
+wandb==0.28.0
+numpy==1.26.4
+scipy==1.14.1
+pandas==3.0.3
+pyarrow==24.0.0
+safetensors==0.8.0
+openai==2.44.0
+anthropic==0.113.0
+codetiming==1.4.0
+dill==0.4.1
+einops==0.8.2
+packaging==25.0
+pydantic==2.13.4
+pip==25.0.1
+setuptools==79.0.1
+wheel==0.47.0
+ninja==1.13.0
+
+gymnasium==1.2.3
+gym==0.26.2
+gym-sokoban==0.0.6
+nashpy==0.0.43
+math-verify==0.9.0
+latex2sympy2_extended==1.11.0
+antlr4-python3-runtime==4.9.3
+pylatexenc==2.10
+matplotlib==3.11.0
+psutil==7.2.2
+tokenizers==0.22.2
+protobuf==6.33.6
+filelock==3.29.4
+triton==3.4.0
+nvidia-cuda-runtime-cu12==12.8.90

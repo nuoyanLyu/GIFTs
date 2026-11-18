@@ -1,0 +1,4 @@
+defaults:
+  - base
+  - override model_profile: qwen3_4b_nothink
+  - _self_

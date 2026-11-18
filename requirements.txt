@@ -1,0 +1,4 @@
+# Current independent ragen2 runtime. Use scripts/setup_ragen2_env.sh for the
+# matched FlashAttention wheel and editable local ragen/verl registration.
+# See docs/ragen2_environment.md before installing into a new environment.
+-r requirements-ragen2.txt

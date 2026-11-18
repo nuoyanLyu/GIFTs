@@ -1,0 +1,44 @@
+# Local credentials and environment settings
+.env
+.env.*
+!.env.example
+api-keys.json
+api_keys.json
+*.pem
+*.key
+
+# Virtual environments, Python build products and machine-local dependencies
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+/reason_test/.ifeval_deps/
+.DS_Store
+._*
+
+# Run artifacts
+/logs/
+/outputs/
+/checkpoints/
+/wandb/
+/ray_results/
+/data/
+/results/
+*.log
+*.lock
+*.bak
+*.swp
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# Migration evidence, archives and upstream RAGEN reference copy
+/migration/RAGEN-*/
+/migration/*.json
+/migration/*.tar.gz
+!/migration/verl061.tar.gz

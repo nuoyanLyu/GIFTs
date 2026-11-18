@@ -1,0 +1,21 @@
+# @package _global_
+
+model_path: /data1/model/Qwen3-4B
+data:
+  apply_chat_template_kwargs:
+    enable_thinking: false
+agent_proxy:
+  enable_think: false
+  response_protocol: final_answer_with_prefix
+actor_rollout_ref:
+  rollout:
+    mode: sync
+    do_sample: true
+    temperature: 0.7
+    top_p: 0.8
+    top_k: 20
+    val_kwargs:
+      do_sample: true
+      temperature: 0.7
+      top_p: 0.8
+      top_k: 20

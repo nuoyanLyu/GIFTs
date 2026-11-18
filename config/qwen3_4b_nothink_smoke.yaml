@@ -1,0 +1,75 @@
+defaults:
+  - base
+  - _self_
+
+# Compatibility smoke only: local game, no paid API and no final experiment claim.
+model_path: /data1/model/Qwen3-4B
+system:
+  CUDA_VISIBLE_DEVICES: '4'
+data:
+  apply_chat_template_kwargs:
+    enable_thinking: False
+agent_proxy:
+  enable_think: False
+  max_turn: 1
+  reward_normalization:
+    grouping: state
+    method: mean_std
+algorithm:
+  adv_estimator: grpo
+  kl_ctrl:
+    kl_coef: 0.001
+ppo_mini_batch_size: 4
+actor_rollout_ref:
+  model:
+    enable_gradient_checkpointing: True
+  actor:
+    use_kl_loss: True
+    kl_loss_coef: 0.001
+    clip_ratio_high: 0.2
+    checkpoint:
+      contents: [model, extra]
+    fsdp_config:
+      param_offload: True
+      optimizer_offload: True
+  ref:
+    fsdp_config:
+      param_offload: True
+  rollout:
+    mode: sync
+    rollout_filter_ratio: 1
+    max_model_len: 2048
+    response_length: 128
+    gpu_memory_utilization: 0.35
+    max_num_batched_tokens: 4096
+    tensor_model_parallel_size: 1
+    calculate_log_probs: False
+trainer:
+  total_training_steps: 2
+  n_gpus_per_node: 1
+  val_before_train: False
+  validation_steps: 1
+  test_freq: -1
+  save_freq: 2
+  logger: [console]
+  experiment_name: qwen3_4b_nothink_compat_smoke
+  default_local_dir: /home/lvnuoyan/RAGEN2/logs/qwen3_4b_nothink_smoke/checkpoints
+  generations_to_log_to_wandb:
+    train: 0
+    val: 0
+es_manager:
+  train:
+    env_groups: 2
+    group_size: 4
+    env_configs:
+      tags: [Bandit]
+      n_groups: [2]
+  val:
+    env_groups: 1
+    group_size: 1
+    env_configs:
+      tags: [Bandit]
+      n_groups: [1]
+ray_init:
+  num_cpus: 8
+  object_store_memory: 1073741824
